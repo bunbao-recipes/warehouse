@@ -1,0 +1,27 @@
+{
+	"name": "warehouse",
+	"version": "0.1.0",
+	"description": "Developers tools",
+	"main": "index.mjs",
+	"types": "index.d.ts",
+	"scripts": {
+		"test": "node test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/bunbao-recipes/warehouse.git"
+	},
+	"keywords": [
+		"Dev",
+		"Tools"
+	],
+	"author": "Rus Inozemtsev",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bunbao-recipes/warehouse/issues"
+	},
+	"homepage": "https://github.com/bunbao-recipes/warehouse#readme",
+	"bin": {
+		"warehouse": "./cli.mjs"
+	}
+}
