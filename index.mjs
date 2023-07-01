@@ -1,3 +1,4 @@
+import { exec } from "child_process";
 import fs, { writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "node:path";
 
@@ -69,6 +70,18 @@ module.exports = {
 	}
 };
 `;
+
+exec("git status", (error, stdout, stderr) => {
+	if (error) {
+		console.log(`error: ${error.message}`);
+		return;
+	}
+	if (stderr) {
+		console.log(`stderr: ${stderr}`);
+		return;
+	}
+	console.log(`stdout: ${stdout}`);
+});
 
 export function init() {
 	for (const [k, v] of Object.entries(templates)) {
