@@ -7,10 +7,14 @@ const _path = (p) => join(cwd, p);
 
 const templates = {};
 
+templates[".warehouse/"] = {};
+templates[".local/"] = {};
+
 templates["src/"] = {};
 
 templates[".gitignore"] = `
 node_modules/
+.warehouse/
 .local/
 `;
 
