@@ -1,4 +1,6 @@
-# Version 0.10.0
+# Version 0.11.0
+- release: 0.11.0
+- docs: changelog update
 - release: 0.10.0
 - docs: changelog update
 - release: 0.9.0
