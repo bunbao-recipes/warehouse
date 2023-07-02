@@ -1,4 +1,6 @@
 # Version 0.2.0
+- chore: .
+- chore: .
 - feat: chnagelog generation
 - release: 0.2.0
 - chore: ...
