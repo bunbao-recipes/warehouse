@@ -20,7 +20,6 @@ const x = (cmd) => {
 };
 
 const parseMsg = (msg) => {
-	v;
 	let [type, text = ""] = msg.split(":");
 	return {
 		type: type.trim(),
