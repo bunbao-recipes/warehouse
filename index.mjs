@@ -71,6 +71,11 @@ module.exports = {
 };
 `;
 
+templates[".npmrc"] = `
+sign-git-tag=true
+message="release: %s"
+`;
+
 export function init() {
 	git.status();
 	git.branch();
