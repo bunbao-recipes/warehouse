@@ -1,3 +1,5 @@
+import { execSync } from "child_process";
+
 export const exe = (cmd) => {
 	return (
 		"" +

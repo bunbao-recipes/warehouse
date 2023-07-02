@@ -1,11 +1,12 @@
 import { log } from "../src/cnsl.mjs";
 import { git } from "../src/git.mjs";
 import { exe } from "../src/exe.mjs";
+import { join } from "path";
+import { cwd } from "process";
+import { cwdfs } from "../src/cwdfs.mjs";
+
 const status = git.status();
 const commits = git.commits();
-
-// const types = [["breaking"], ["feat"], ["chore", "docs", "quickfix"]];
-// const versions = ["major", "minor", "patch"];
 
 const types = {
 	breaking: 2,
@@ -24,11 +25,27 @@ for (const cmt of commits) {
 		type = types[cmtType];
 	}
 }
-//log(commits);
-//log(type);
+
+const pckg = (
+	await import(join(cwd(), "package.json"), {
+		assert: { type: "json" },
+	})
+).default;
+
 const changelog = `
-# Version
-${commits.map((c) => `${c.msg.type}:\t${c.msg.text}`).join("\n")}
+# Version ${pckg.version}
+${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 `.trim();
-log(type, versions[type]);
-log(changelog);
+
+log("update type", `"${versions[type]}". Current version is ${pckg.version}`);
+// log(changelog);
+
+if (status.length !== 0) {
+	log("git working dir is not empty. Writing to CHANGELOG_PREVIEW.md");
+	cwdfs.writeFileSync("CHANGELOG_PREVIEW.md", changelog);
+} else {
+	cwdfs.writeFileSync("CHANGELOG.md", changelog);
+	exe(`git add .`);
+	exe(`npm version ${versions[type]}`);
+	exe(`git push origin --tags`);
+}
