@@ -40,6 +40,11 @@ ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 log("update type", `"${versions[type]}". Current version is ${pckg.version}`);
 // log(changelog);
 
+if (versions[type]) {
+	log("no updates");
+	process.exit();
+}
+
 if (status.length !== 0) {
 	log("git working dir is not empty. Writing to CHANGELOG_PREVIEW.md");
 	cwdfs.writeFileSync("CHANGELOG_PREVIEW.md", changelog);
