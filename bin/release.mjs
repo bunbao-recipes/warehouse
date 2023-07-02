@@ -1,6 +1,6 @@
 import { log } from "../src/cnsl.mjs";
 import { git } from "../src/git.mjs";
-
+import { exe } from "../src/exe.mjs";
 const status = git.status();
 const commits = git.commits();
 
@@ -24,5 +24,11 @@ for (const cmt of commits) {
 		type = types[cmtType];
 	}
 }
-log(commits);
-log(type);
+//log(commits);
+//log(type);
+const changelog = `
+# Version
+${commits.map((c) => `${c.msg.type}:\t${c.msg.text}`).join("\n")}
+`.trim();
+log(type, versions[type]);
+log(changelog);
