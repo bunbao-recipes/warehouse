@@ -53,5 +53,6 @@ if (status.length !== 0) {
 	log(exe(`git add CHANGELOG.md`));
 	log(exe(`git commit -m "docs: changelog update"`));
 	log(exe(`npm version ${versions[type]}`));
+	log("here");
 	log(exe(`git push origin --tags`));
 }
