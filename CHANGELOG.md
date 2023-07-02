@@ -1,4 +1,6 @@
-# Version 0.2.0
+# Version 0.3.0
+- release: 0.3.0
+- docs: changelog update
 - chore: .
 - chore: .
 - feat: chnagelog generation
