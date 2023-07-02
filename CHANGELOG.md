@@ -1,5 +1,2 @@
-# Version 0.11.1
-- chore: .
-- release: 0.11.1
-- docs: changelog update
+# Version 0.11.2
 - chore: .
