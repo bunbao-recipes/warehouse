@@ -19,9 +19,51 @@ const x = (cmd) => {
 	).trim();
 };
 
+const parseMsg = (msg) => {
+	v;
+	let [type, text = ""] = msg.split(":");
+	return {
+		type: type.trim(),
+		text: text.trim(),
+	};
+};
+
 export const git = {};
 
 git.status = () => {
 	const out = x("git status --porcelain");
-	log({ out });
+	return out;
+};
+
+git.branch = () => {
+	const out = x("git branch");
+	return out;
+};
+
+git.commits = () => {
+	const o = x("git log origin/main..main");
+	const out = o.split(/^commit|\ncommit/);
+	const commits = [];
+
+	for (let ent of out) {
+		ent = ent.trim();
+		if (ent === "") {
+			continue;
+		}
+		const [meta, msg] = ent.split("\n\n");
+		const [hash, ...props] = meta.split("\n");
+		commits.push({
+			//ent: ent,
+			//meta,
+			hash,
+			props: props.reduce((acc, cur) => {
+				const [varName, ...rest] = cur.split(":");
+				acc[varName] = rest.join(":").trim();
+				return acc;
+			}, {}),
+			msg: parseMsg(msg),
+		});
+	}
+	log({ commits });
+	return out;
 };
