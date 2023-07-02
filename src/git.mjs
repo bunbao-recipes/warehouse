@@ -31,7 +31,7 @@ export const git = {};
 
 git.status = () => {
 	const out = x("git status --porcelain");
-	return out;
+	return out.split("\n").map((ent) => ent.trim());
 };
 
 git.branch = () => {
