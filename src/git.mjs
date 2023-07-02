@@ -55,8 +55,6 @@ git.commits = () => {
 		const [meta, msg] = ent.split("\n\n");
 		const [hash, ...props] = meta.split("\n");
 		commits.push({
-			//ent: ent,
-			//meta,
 			hash,
 			props: props.reduce((acc, cur) => {
 				const [varName, ...rest] = cur.split(":");
