@@ -73,6 +73,8 @@ module.exports = {
 
 export function init() {
 	git.status();
+	git.branch();
+	git.commits();
 	for (const [k, v] of Object.entries(templates)) {
 		const pth = _path(k);
 		if (pth.slice(-1) === "/") {
