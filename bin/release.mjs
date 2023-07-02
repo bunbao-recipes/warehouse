@@ -40,7 +40,7 @@ ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 log("update type", `"${versions[type]}". Current version is ${pckg.version}`);
 // log(changelog);
 
-if (versions[type]) {
+if (!versions[type]) {
 	log("no updates");
 	process.exit();
 }
