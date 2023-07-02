@@ -66,6 +66,5 @@ git.commits = () => {
 			msg: parseMsg(msg),
 		});
 	}
-	log({ commits });
-	return out;
+	return commits;
 };

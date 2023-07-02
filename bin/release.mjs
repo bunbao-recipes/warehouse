@@ -7,8 +7,7 @@ const commits = git.commits();
 const types = [["breaking"], ["feat"], ["chore", "docs", "quickfix"]];
 const versions = ["major", "minor", "patch"];
 
-console.log(commits);
-
+log(commits);
 for (const cmt of commits) {
 	let type = 0;
 }
