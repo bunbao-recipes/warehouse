@@ -45,7 +45,8 @@ if (status.length !== 0) {
 	cwdfs.writeFileSync("CHANGELOG_PREVIEW.md", changelog);
 } else {
 	cwdfs.writeFileSync("CHANGELOG.md", changelog);
-	exe(`git add .`);
+	exe(`git add CHANGELOG.md`);
+	exe(`git commit -m "docs: changelog update"`);
 	exe(`npm version ${versions[type]}`);
 	exe(`git push origin --tags`);
 }
