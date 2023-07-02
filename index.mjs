@@ -72,7 +72,7 @@ module.exports = {
 `;
 
 templates[".npmrc"] = `
-sign-git-tag=true
+sign-git-tag=false
 message="release: %s"
 `;
 
