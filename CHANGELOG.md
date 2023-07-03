@@ -1,3 +1,3 @@
-# Version 0.11.5
-- chore: bin scripts renamed
-- chore: bin scripts renamed
+# Version 0.11.6
+- chore: cleanup to release script
+- chore: cleanup of release script
