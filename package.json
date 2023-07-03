@@ -23,7 +23,7 @@
 	},
 	"homepage": "https://github.com/bunbao-recipes/warehouse#readme",
 	"bin": {
-		"warehouse": "./bin/warehouse.mjs",
-		"release": "./bin/release.mjs"
+		"wh-init": "./bin/warehouse.mjs",
+		"wh-release": "./bin/release.mjs"
 	}
 }
