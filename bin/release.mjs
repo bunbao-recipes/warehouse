@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { log } from "../src/cnsl.mjs";
 import { git } from "../src/git.mjs";
 import { exe } from "../src/exe.mjs";
