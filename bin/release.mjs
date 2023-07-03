@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
+import { join } from "path";
+import { cwd } from "process";
+
 import { log } from "../src/cnsl.mjs";
 import { git } from "../src/git.mjs";
 import { exe } from "../src/exe.mjs";
-import { join } from "path";
-import { cwd } from "process";
 import { cwdfs } from "../src/cwdfs.mjs";
+import { init } from "../index.mjs";
+
+init();
 
 const status = git.status();
 const commits = git.commits();
@@ -34,21 +38,22 @@ const pckg = (
 	})
 ).default;
 
+const updateType = versions[type];
+log(
+	"update type",
+	`"${updateType || "preview"}". Current version is ${pckg.version}`
+);
+
+!updateType && process.exit();
+
 const changelog = `
-# Version ${pckg.version}
+# v${pckg.version}
 ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 `.trim();
 
-log("update type", `"${versions[type]}". Current version is ${pckg.version}`);
-
-if (!versions[type]) {
-	log("no updates");
-	process.exit();
-}
-
 if (status.length !== 0) {
 	log("git working dir is not empty. Writing to CHANGELOG_PREVIEW.md");
-	cwdfs.writeFileSync("CHANGELOG_PREVIEW.md", changelog);
+	cwdfs.writeFileSync("CHANGELOG.md", changelog);
 } else {
 	cwdfs.writeFileSync("CHANGELOG.md", changelog);
 	log(exe(`git add CHANGELOG.md`));
