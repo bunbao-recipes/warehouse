@@ -1,5 +1,3 @@
-# Version 0.11.3
-- chore: .
-- release: 0.11.3
-- docs: changelog update
-- chore: .
+# Version 0.11.4
+- fix: add DS_Store to gitignore
+- chore: cleanup
