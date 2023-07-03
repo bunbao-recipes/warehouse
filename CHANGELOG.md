@@ -1,3 +1,2 @@
-# Version 0.11.6
-- chore: cleanup to release script
-- chore: cleanup of release script
+# v0.11.7
+- chore: logging to update script
