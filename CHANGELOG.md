@@ -1,3 +1,3 @@
-# Version 0.11.4
-- fix: add DS_Store to gitignore
-- chore: cleanup
+# Version 0.11.5
+- chore: bin scripts renamed
+- chore: bin scripts renamed
