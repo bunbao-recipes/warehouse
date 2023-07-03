@@ -1,2 +1,2 @@
-# v0.11.7
-- chore: logging to update script
+# v0.11.8
+- docs: readme updated
