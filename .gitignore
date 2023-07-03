@@ -1,5 +1,4 @@
 node_modules/
 .warehouse/
 .local/
-
-CHANGELOG_PREVIEW.md
+.DS_Store

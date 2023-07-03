@@ -17,6 +17,7 @@ templates[".gitignore"] = `
 node_modules/
 .warehouse/
 .local/
+.DS_Store
 `;
 
 templates[".editorconfig"] = `
