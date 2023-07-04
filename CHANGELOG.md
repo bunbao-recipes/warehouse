@@ -1,3 +1,3 @@
-# v0.11.9
-- feat: automatic chore release
-- feat: automatic chore release without tagging
+# v0.12.0
+- chore: fix
+- fix: auto chore release
