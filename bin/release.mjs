@@ -52,8 +52,9 @@ ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 `.trim();
 
 if (status.length !== 0) {
-	log("git working dir is not empty. Writing to CHANGELOG_PREVIEW.md");
-	cwdfs.writeFileSync("CHANGELOG.md", changelog);
+	//cwdfs.writeFileSync("CHANGELOG.md", changelog);
+	log(exe(`git commit -m "chore: progress"`));
+	log(exe(`git push origin`));
 } else {
 	cwdfs.writeFileSync("CHANGELOG.md", changelog);
 	log(exe(`git add CHANGELOG.md`));

@@ -1,28 +1,32 @@
-import fs, { writeFileSync, mkdirSync, existsSync } from "fs";
+import fs, { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { git } from "./src/git.mjs";
 
-const log = console.log;
 const cwd = process.cwd();
-const _path = (p) => join(cwd, p);
+const _path = (p, dir) => {
+	if (dir) {
+		return join(dir, p);
+	}
+	return join(cwd, p);
+};
 
 const templates = {};
-
 templates[".warehouse/"] = {};
 templates[".local/"] = {};
-
 templates["src/"] = {};
 
 templates[".gitignore"] = `
-node_modules/
 .warehouse/
 .local/
+
+.tmp/
+.dev/
+
+node_modules/
 .DS_Store
 `;
 
 templates[".editorconfig"] = `
 root = true
-ass = ass
 [*]
 charset = utf-8
 end_of_line = lf
@@ -77,12 +81,9 @@ sign-git-tag=false
 message="release: %s"
 `;
 
-export function init() {
-	git.status();
-	git.branch();
-	git.commits();
+export function init(dir) {
 	for (const [k, v] of Object.entries(templates)) {
-		const pth = _path(k);
+		const pth = _path(k, dir);
 		if (pth.slice(-1) === "/") {
 			// folder
 			!existsSync(pth) && mkdirSync(pth);

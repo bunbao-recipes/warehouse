@@ -1,6 +1,6 @@
 # Warehouse
 
-Tools for developers
+Tools for developers and salvation for juniors
 
 ## Install
 
@@ -15,6 +15,11 @@ If you are using utils also
 ```sh
 npm i -d https://github.com/bunbao-recipes/warehouse.git
 ```
+
+## What's next?
+
+- Automaticaly check for available updates
+- Wharehouse config to customize some settings in generated files
 
 ## For developers
 
