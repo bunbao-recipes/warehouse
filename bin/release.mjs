@@ -53,6 +53,7 @@ ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 
 if (status.length !== 0) {
 	//cwdfs.writeFileSync("CHANGELOG.md", changelog);
+	log(exe(`git add ."`));
 	log(exe(`git commit -m "chore: progress"`));
 	log(exe(`git push origin`));
 } else {
