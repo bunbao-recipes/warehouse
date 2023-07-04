@@ -1,4 +1,8 @@
-node_modules/
 .warehouse/
 .local/
+
+.tmp/
+.dev/
+
+node_modules/
 .DS_Store
