@@ -1,2 +1,2 @@
-# v0.11.8
-- docs: readme updated
+# v0.11.9
+- feat: automatic chore release without tagging
