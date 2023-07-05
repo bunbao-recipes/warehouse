@@ -2,12 +2,41 @@
 
 import { join } from "node:path";
 import { argv } from "process";
-import { mkdirSync, existsSync } from "node:fs";
+import { mkdirSync, existsSync, writeFileSync } from "node:fs";
 import { log } from "../src/cnsl.mjs";
 import { cwd, cwdfs } from "../src/cwdfs.mjs";
 import { init } from "../index.mjs";
+import { Err } from "../src/err.mjs";
 
 init();
+
+const pckg = (name) => `
+{
+	"name": "${name}",
+	"version": "0.1.0",
+	"description": "Description of '${name}'",
+	"main": "index.mjs",
+	"types": "index.d.ts",
+	"scripts": {
+		"test": "node test",
+		"git:push": "push origin --tags"
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"keywords": [
+		"Warehouse",
+		"${name}"
+	],
+	"author": "You",
+	"license": "MIT",
+	"homepage": "",
+	"bin": {
+		"${name}": "./bin/${name}.mjs",
+	}
+}
+`;
 
 const parseArgv = () => {
 	const propsIndex = process.argv.findIndex((i) => i.slice(0, 2) === "--");
@@ -45,9 +74,8 @@ const parseArgv = () => {
 const { args, opts } = parseArgv();
 
 const main = (name, opts) => {
-	if (opts && typeof opts !== "object") {
-		throw new Error("unknown params list");
-	}
+	Err.if.notType(name, "string", "please set project name");
+	opts && Err.if.notType(opts, "object", "unknown params list");
 
 	opts = {
 		dir: cwd || opts.dir,
@@ -57,7 +85,8 @@ const main = (name, opts) => {
 	const projectDir = join(opts.dir, name);
 
 	!existsSync(projectDir) && mkdirSync(projectDir, { recursive: true });
-
+	init(projectDir);
+	writeFileSync(join(projectDir, "package.json"), pckg(name), "utf-8");
 	log({
 		projectDir,
 		name,
@@ -65,4 +94,4 @@ const main = (name, opts) => {
 	});
 };
 
-main(...args, opts);
+main(args[0], opts);
