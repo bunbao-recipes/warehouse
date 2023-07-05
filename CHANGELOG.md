@@ -1,3 +1,2 @@
-# v0.12.0
-- chore: fix
-- fix: auto chore release
+# v0.12.2
+- release: 0.12.2
