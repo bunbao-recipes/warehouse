@@ -1,2 +1,2 @@
-# v0.12.8
-- chore: marge resolve
+# v0.12.9
+- chore: pregress
