@@ -1,4 +1,6 @@
-# v0.12.4
+# v0.12.5
+- release: 0.12.5
+- docs: changelog update to version x.y.z
 - release: 0.12.4
 - docs: changelog update to version x.y.z
 - release: 0.12.3
