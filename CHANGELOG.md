@@ -1,3 +1,3 @@
-# v0.12.6
+# v0.12.7
 - chore: progress
-- chore: progress
+- fix: bash line to creds
