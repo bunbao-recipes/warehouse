@@ -59,7 +59,6 @@ log("this changes will be stashed and unstashed after commit");
 log(status);
 !updateType && process.exit();
 
-//process.exit();
 cwdfs.writeFileSync("CHANGELOG.md", changelog);
 log(exe(`git add CHANGELOG.md`));
 log(exe(`git commit -m "docs: changelog update to version x.y.z"`));
