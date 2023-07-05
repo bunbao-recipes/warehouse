@@ -47,6 +47,7 @@ const updateType = versions[type];
 log("update type:", `"${updateType || "preview"}".`);
 log(`current version: ${pckg.version}`);
 log(separator);
+log(exe(`git pull`));
 
 const changelog = `
 # v${pckg.version}
