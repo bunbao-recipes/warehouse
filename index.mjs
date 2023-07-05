@@ -10,9 +10,35 @@ const _path = (p, dir) => {
 };
 
 const templates = {};
+templates[".vscode/"] = {};
+templates[".vscode/settings.json"] = `
+{
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.validate": ["javascript", "typescript"],
+	"editor.formatOnSave": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.rulers": [80]
+}
+`;
+
 templates[".warehouse/"] = {};
 templates[".local/"] = {};
+templates[".dev/"] = {};
 templates["src/"] = {};
+templates["bin/"] = {};
 
 templates[".gitignore"] = `
 .warehouse/

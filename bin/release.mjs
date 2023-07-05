@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { join } from "path";
 import { cwd } from "process";
@@ -11,9 +11,6 @@ import { init } from "../index.mjs";
 
 init();
 
-const status = git.status();
-const commits = git.commits();
-
 const types = {
 	breaking: 2,
 	feat: 1,
@@ -21,6 +18,17 @@ const types = {
 	docs: 0,
 	quickfix: 0,
 };
+
+const title = "--- wh-release ---";
+const separator = "".padEnd(title.length, "-");
+log(title);
+log("use conventional commits");
+log("https://github.com/bunbao-recipes/warehouse/tree/main/docs/COMMITS.md");
+log("allowed types:", Object.keys(types).join(","));
+log(separator);
+
+const status = git.status();
+const commits = git.commits();
 
 const versions = ["patch", "minor", "major"];
 
@@ -32,35 +40,31 @@ for (const cmt of commits) {
 	}
 }
 
-const pckg = (
-	await import(join(cwd(), "package.json"), {
-		assert: { type: "json" },
-	})
-).default;
+const pckg = cwdfs.readFileSync("package.json", { json: true });
 
 const updateType = versions[type];
-log(
-	"update type",
-	`"${updateType || "preview"}". Current version is ${pckg.version}`
-);
 
-!updateType && process.exit();
+log("update type:", `"${updateType || "preview"}".`);
+log(`current version: ${pckg.version}`);
+log(separator);
 
 const changelog = `
 # v${pckg.version}
 ${commits.map((c) => `- ${c.msg.type}: ${c.msg.text}`).join("\n")}
 `.trim();
 
-if (status.length !== 0) {
-	//cwdfs.writeFileSync("CHANGELOG.md", changelog);
-	log(exe(`git add ."`));
-	log(exe(`git commit -m "chore: progress"`));
-	log(exe(`git push origin`));
-} else {
-	cwdfs.writeFileSync("CHANGELOG.md", changelog);
-	log(exe(`git add CHANGELOG.md`));
-	log(exe(`git commit -m "docs: changelog update"`));
-	log(exe(`npm version ${versions[type]}`));
-	log(exe(`git push origin`));
-	log(exe(`git push origin --tags`));
-}
+log(changelog);
+log(separator);
+log("this changes will be stashed and unstashed after commit");
+log(status);
+!updateType && process.exit();
+
+//process.exit();
+cwdfs.writeFileSync("CHANGELOG.md", changelog);
+log(exe(`git add CHANGELOG.md`));
+log(exe(`git commit -m "docs: changelog update to version x.y.z"`));
+log(exe(`git stash`));
+log(exe(`npm version ${versions[type]}`));
+log(exe(`git push origin`));
+log(exe(`git push origin --tags`));
+log(exe(`git stash apply`));
