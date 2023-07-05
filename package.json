@@ -1,6 +1,6 @@
 {
 	"name": "warehouse",
-	"version": "0.12.5",
+	"version": "0.12.6",
 	"description": "Developers tools",
 	"main": "index.mjs",
 	"types": "index.d.ts",
