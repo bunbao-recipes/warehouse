@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 /** */
 import crypto from "node:crypto";
 import { log } from "../src/cnsl.mjs";
