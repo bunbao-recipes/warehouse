@@ -1,2 +1,3 @@
-# v0.12.10
-- docs: missed commit types added
+# v0.12.11
+- feat: nginx config neneration
+- feat: wh commands
