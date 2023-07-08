@@ -1,6 +1,5 @@
 import { join } from "node:path";
 import { existsSync } from "node:fs";
-s;
 import { color, log } from "../../src/cnsl.mjs";
 import { Err } from "../../src/err.mjs";
 import { binDir } from "../.lib.mjs";

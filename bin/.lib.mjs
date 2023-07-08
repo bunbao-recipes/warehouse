@@ -1,10 +1,14 @@
-import { parse } from "node:path";
+import { join, parse } from "node:path";
 import { color, log } from "../src/cnsl.mjs";
 
+export const cwd = process.cwd();
 const url = import.meta.url;
 const urlObj = parse(url);
-
+/** @deprecated use dirs.bin */
 export const binDir = urlObj.dir.replace("file:", "");
+export const dirs = {};
+dirs.bin = urlObj.dir.replace("file:", "");
+dirs.tmp = join(cwd, ".tmp");
 
 export const parseArgStr = (str) => {
 	log(color("input:", "red"), str);
