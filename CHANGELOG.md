@@ -1,3 +1,2 @@
-# v0.12.11
-- feat: nginx config neneration
-- feat: wh commands
+# v0.13.0
+- chore: quickfix
